@@ -130,7 +130,7 @@ alias bmail='mutt -F ~/.muttrc.one.com'
 alias aoeu='setxkbmap dk; xmodmap ~/.xmodmaprc'
 alias asdf='setxkbmap -layout us -variant dvorak-intl; xmodmap ~/.xmodmaprc.dvorak'
 alias qwer='setxkbmap -layout us -option compose:lwin; xmodmap ~/.xmodmaprc.us'
-alias xping='xping -Co'
+alias xping='xping -C'
 
 
 # Warning if system wide SendEnv is active in /etc/ssh/ssh_config
