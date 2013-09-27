@@ -1,3 +1,5 @@
+silent! call pathogen#infect()
+
 syntax on
 filetype plugin indent on
 
@@ -12,6 +14,8 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 autocmd FileType text set tw=80
 autocmd Filetype tex setlocal nofoldenable|set tw=80
 autocmd BufNewFile,BufRead /tmp/mutt* set tw=72
+
+let g:vim_markdown_folding_disabled=1
 
 if has("gui_running")
     set lines=24 columns=80
