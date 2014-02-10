@@ -51,7 +51,6 @@ export DEBCHANGE_AUTO_NMU=no
 export REPLYTO=nyerup@one.com
 export ONECOMID=nyerup
 export EDITOR=vi
-export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
 
 # Don't complete with git ls-files
 __git_files () {
