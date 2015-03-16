@@ -20,6 +20,8 @@ set laststatus=2
 set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
 set statusline+=%#warningmsg#
 set statusline+=%*
+
+let g:vim_markdown_folding_disabled=1
 highlight SpecialKey ctermfg=19
 highlight CursorLine cterm=NONE ctermbg=17
 highlight StatusLine ctermfg=18 ctermbg=106
@@ -28,7 +30,6 @@ autocmd FileType text set tw=80
 autocmd Filetype tex setlocal nofoldenable|set tw=80
 autocmd BufNewFile,BufRead /tmp/mutt* set tw=72
 
-let g:vim_markdown_folding_disabled=1
 
 if has("gui_running")
     set lines=24 columns=80
