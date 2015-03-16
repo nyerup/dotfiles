@@ -22,6 +22,21 @@ set statusline+=%#warningmsg#
 set statusline+=%*
 
 let g:vim_markdown_folding_disabled=1
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 2
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_signs = 1
+let g:syntastic_error_symbol = "▸"
+let g:syntastic_warning_symbol = "▸"
+let g:syntastic_style_error_symbol = "▹"
+let g:syntastic_style_warning_symbol = "▹"
+let g:syntastic_enable_perl_checker = 1
+let g:syntastic_python_pylint_exec = '/usr/local/bin/pylint'
+let g:syntastic_python_checkers = ['python', 'pylint']
+let g:syntastic_perl_checkers = ['perl']
+
 highlight SpecialKey ctermfg=19
 highlight CursorLine cterm=NONE ctermbg=17
 highlight StatusLine ctermfg=18 ctermbg=106
@@ -30,7 +45,16 @@ autocmd FileType text set tw=80
 autocmd Filetype tex setlocal nofoldenable|set tw=80
 autocmd BufNewFile,BufRead /tmp/mutt* set tw=72
 
+autocmd VimEnter * :call AfterOpen()
+
 
 if has("gui_running")
     set lines=24 columns=80
 endif
+
+function AfterOpen()
+	if exists("g:loaded_syntastic_plugin")
+		set statusline+=%{SyntasticStatuslineFlag()}
+	endif
+endfunction
+
