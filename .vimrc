@@ -11,7 +11,9 @@ set showmatch
 set backspace=2
 set tabstop=4
 set shiftwidth=4
-set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+set list
+set listchars=tab:→·,trail:·
+highlight SpecialKey ctermfg=19
 
 autocmd FileType text set tw=80
 autocmd Filetype tex setlocal nofoldenable|set tw=80
