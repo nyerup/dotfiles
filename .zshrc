@@ -12,7 +12,7 @@ zle -N edit-command-line
 bindkey '\ee' edit-command-line
 
 stty werase undef
-WORDCHARS=${WORDCHARS//\//}
+WORDCHARS=${WORDCHARS//[\/.;]}
 
 # Keyboard bindings
 bindkey -e
