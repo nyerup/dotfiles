@@ -1,5 +1,5 @@
 setopt appendhistory incappendhistory extendedhistory
-setopt autocd beep nomatch interactivecomments 
+setopt autocd beep nomatch interactivecomments
 unsetopt extendedglob notify
 
 zstyle ':completion:*' menu select
@@ -99,7 +99,7 @@ case $(uname -s) in
         alias ls='ls -FG'
         ;;
 esac
-        
+
 # Finding prompt sign
 if [ $(whoami) = "root" ]; then
     PROMPT_SIGN='#'
@@ -129,7 +129,6 @@ alias bmail='mutt -F ~/.muttrc.one.com'
 alias cdiff="sed -e '/^---/s/^\(.*\)/[1m\1[0m/' -e '/^+++/s/^\(.*\)/[1m\1[0m/' -e '/^@@/s/^\(.*\)/[1m\1[0m/' -e '/^-/s/^\(.*\)/[31m\1[0m/' -e '/^\+/s/^\(.*\)/[32m\1[0m/' | less -C -R $@"
 alias xping='xping -C'
 
-
 # Warning if system wide SendEnv is active in /etc/ssh/ssh_config
 if [ -r /etc/ssh/ssh_config ]; then
     WARNING=$(grep 'SendEnv LANG' /etc/ssh/ssh_config | perl -nle 'unless (/^#/) {print "!"}')
@@ -138,4 +137,3 @@ fi
 # Setting up the prompt
 export PS1="$(print '[%T]'${WARNING}' %{\e[1;'${PROMPT_COLOR}'m%}%M%{\e[0m%}') ${PROMPT_SIGN} "
 export RPS1="%~"
-
