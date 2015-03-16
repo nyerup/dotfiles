@@ -81,7 +81,7 @@ autocmd VimEnter * :call AfterOpen()
 
 
 if has("gui_running")
-    set lines=24 columns=80
+	set lines=24 columns=80
 endif
 
 function TypesetLatex()
