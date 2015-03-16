@@ -37,6 +37,18 @@ let g:syntastic_python_pylint_exec = '/usr/local/bin/pylint'
 let g:syntastic_python_checkers = ['python', 'pylint']
 let g:syntastic_perl_checkers = ['perl']
 
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'Þ'
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+
 highlight SpecialKey ctermfg=19
 highlight CursorLine cterm=NONE ctermbg=17
 highlight StatusLine ctermfg=18 ctermbg=106
