@@ -126,6 +126,7 @@ alias ssg='ssh'
 alias ssj='ssh'
 alias gmail='mutt -F ~/.muttrc.gmail'
 alias bmail='mutt -F ~/.muttrc.one.com'
+alias cdiff="sed -e '/^---/s/^\(.*\)/[1m\1[0m/' -e '/^+++/s/^\(.*\)/[1m\1[0m/' -e '/^@@/s/^\(.*\)/[1m\1[0m/' -e '/^-/s/^\(.*\)/[31m\1[0m/' -e '/^\+/s/^\(.*\)/[32m\1[0m/' | less -C -R $@"
 alias xping='xping -C'
 
 
