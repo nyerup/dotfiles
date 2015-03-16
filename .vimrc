@@ -75,6 +75,7 @@ autocmd BufWinLeave * call clearmatches()
 autocmd BufNewFile,BufRead /tmp/mutt* set tw=72
 autocmd BufNewFile,BufRead *.json.disabled set ft=json
 autocmd BufNewFile,BufRead *.jsondisabled set ft=json
+autocmd BufWritePost *.tex call TypesetLatex()
 
 autocmd VimEnter * :call AfterOpen()
 
@@ -82,6 +83,11 @@ autocmd VimEnter * :call AfterOpen()
 if has("gui_running")
     set lines=24 columns=80
 endif
+
+function TypesetLatex()
+	silent !pdflatex -interaction=nonstopmode %
+	redraw!
+endfunction
 
 function AfterOpen()
 	if exists("g:loaded_syntastic_plugin")
