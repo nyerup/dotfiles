@@ -126,9 +126,6 @@ alias ssg='ssh'
 alias ssj='ssh'
 alias gmail='mutt -F ~/.muttrc.gmail'
 alias bmail='mutt -F ~/.muttrc.one.com'
-alias aoeu='setxkbmap dk; xmodmap ~/.xmodmaprc'
-alias asdf='setxkbmap -layout us -variant dvorak-intl; xmodmap ~/.xmodmaprc.dvorak'
-alias qwer='setxkbmap -layout us -option compose:lwin; xmodmap ~/.xmodmaprc.us'
 alias xping='xping -C'
 
 
