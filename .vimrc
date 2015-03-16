@@ -3,6 +3,8 @@ silent! call pathogen#infect()
 syntax on
 filetype plugin indent on
 
+set t_Co=256
+set encoding=utf-8
 set vb
 set ruler
 set showmatch
