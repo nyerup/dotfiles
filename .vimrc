@@ -15,6 +15,7 @@ set list
 set listchars=tab:→·,trail:·
 set modeline
 set modelines=5
+set cursorline
 set laststatus=2
 set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
 set statusline+=%#warningmsg#
