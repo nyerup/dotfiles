@@ -52,10 +52,29 @@ let g:airline_symbols.paste = 'Þ'
 highlight SpecialKey ctermfg=19
 highlight CursorLine cterm=NONE ctermbg=17
 highlight StatusLine ctermfg=18 ctermbg=106
+highlight ExtraWhitespace ctermbg=red
 
-autocmd FileType text set tw=80
-autocmd Filetype tex setlocal nofoldenable|set tw=80
+match ExtraWhitespace /\s\+$/
+
+autocmd FileType text setlocal tw=80 noexpandtab
+autocmd FileType mkd setlocal tw=80
+autocmd FileType tex setlocal nofoldenable tw=80
+autocmd FileType python setlocal expandtab ts=4 sw=4
+autocmd FileType ruby setlocal expandtab ts=2 sw=2
+autocmd FileType javascript setlocal expandtab ts=4 sw=4
+autocmd FileType json setlocal expandtab ts=4 sw=4
+autocmd FileType yaml setlocal expandtab ts=2 sw=2
+
+autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
+
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
 autocmd BufNewFile,BufRead /tmp/mutt* set tw=72
+autocmd BufNewFile,BufRead *.json.disabled set ft=json
+autocmd BufNewFile,BufRead *.jsondisabled set ft=json
 
 autocmd VimEnter * :call AfterOpen()
 
@@ -69,4 +88,3 @@ function AfterOpen()
 		set statusline+=%{SyntasticStatuslineFlag()}
 	endif
 endfunction
-
