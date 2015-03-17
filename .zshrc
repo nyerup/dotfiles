@@ -5,6 +5,7 @@ unsetopt extendedglob notify
 zstyle ':completion:*' menu select
 zstyle ':completion:*' special-dirs true
 autoload -Uz compinit
+autoload -U colors && colors
 compinit
 
 autoload -U edit-command-line
@@ -70,17 +71,17 @@ esac
 case $(hostname) in
     'enceladus'|'iapetus'|'atlas'|'mimas'|'calypso'|'linux')
         if [ $(id -u) -eq 0 ]; then
-            PROMPT_COLOR=34         # Blue for root terminal
+            PROMPT_COLOR=blue       # Blue for root terminal
         else
 			if [ "$SSH_TTY" -a $(hostname) != 'linux' ]; then
-                PROMPT_COLOR=33     # Yellow for non-local terminal
+                PROMPT_COLOR=yellow # Yellow for non-local terminal
             else
-                PROMPT_COLOR=32     # Green for local terminal
+                PROMPT_COLOR=green  # Green for local terminal
             fi
         fi
         ;;
     *)
-        PROMPT_COLOR=31             # Red for unknown systems
+        PROMPT_COLOR=red            # Red for unknown systems
         ;;
 esac
 
@@ -137,5 +138,5 @@ if [ -r /etc/ssh/ssh_config ]; then
 fi
 
 # Setting up the prompt
-export PROMPT="$(print '[%T]'${WARNING}' %{\e[1;'${PROMPT_COLOR}'m%}%M%{\e[0m%}') ${PROMPT_SIGN} "
-export RPROMPT="%~"
+export PROMPT="[%T]${WARNING} %{$fg_bold[${PROMPT_COLOR}]%}%M %{$reset_color%}${PROMPT_SIGN} "
+export RPROMPT="%{$fg[white]%}%~%{$reset_color%}"
