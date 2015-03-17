@@ -15,10 +15,12 @@ stty werase undef
 WORDCHARS=${WORDCHARS//[\/.;]}
 
 # Keyboard bindings
-bindkey -e
+bindkey -v
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
 bindkey "^[[3~" delete-char
+bindkey "^[^[[D" backward-word
+bindkey "^[^[[C" forward-word
 #bindkey "^?" backwards-delete-char
 
 # Enabling dynamic titles in XTerm-windows
