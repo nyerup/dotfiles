@@ -137,5 +137,5 @@ if [ -r /etc/ssh/ssh_config ]; then
 fi
 
 # Setting up the prompt
-export PS1="$(print '[%T]'${WARNING}' %{\e[1;'${PROMPT_COLOR}'m%}%M%{\e[0m%}') ${PROMPT_SIGN} "
-export RPS1="%~"
+export PROMPT="$(print '[%T]'${WARNING}' %{\e[1;'${PROMPT_COLOR}'m%}%M%{\e[0m%}') ${PROMPT_SIGN} "
+export RPROMPT="%~"
