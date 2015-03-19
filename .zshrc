@@ -23,6 +23,12 @@ bindkey "^[[3~" delete-char
 bindkey "^[^[[D" backward-word
 bindkey "^[^[[C" forward-word
 #bindkey "^?" backwards-delete-char
+#bindkey "^[[A" history-beginning-search-backward
+#bindkey "^[[B" history-beginning-search-forward
+bindkey "^R" history-incremental-search-backward
+bindkey "^K" kill-line
+bindkey "^[." insert-last-word
+bindkey "^[q" push-line
 
 # Enabling dynamic titles in XTerm-windows
 case $TERM in (xterm*|rxvt*)
