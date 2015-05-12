@@ -60,7 +60,7 @@ autocmd FileType text setlocal tw=80 noexpandtab
 autocmd FileType mkd setlocal tw=80
 autocmd FileType tex setlocal nofoldenable tw=80
 autocmd FileType python setlocal expandtab ts=4 sw=4
-autocmd FileType ruby setlocal expandtab ts=2 sw=2
+autocmd FileType ruby setlocal expandtab ts=4 sw=4
 autocmd FileType javascript setlocal expandtab ts=4 sw=4
 autocmd FileType json setlocal expandtab ts=4 sw=4
 autocmd FileType yaml setlocal expandtab ts=2 sw=2
