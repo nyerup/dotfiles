@@ -78,22 +78,22 @@ case $(hostname) in
         ;;
 esac
 
-case $(hostname) in
-    'enceladus'|'iapetus'|'atlas'|'mimas'|'calypso'|'linux')
-        if [ $(id -u) -eq 0 ]; then
-            PROMPT_COLOR=blue       # Blue for root terminal
-        else
-			if [ "$SSH_TTY" -a $(hostname) != 'linux' ]; then
-                PROMPT_COLOR=yellow # Yellow for non-local terminal
+if [ $(id -u) -eq 0 ]; then
+    PROMPT_COLOR=red                 # Red for root terminal
+else
+    case $(hostname) in
+        'enceladus'|'iapetus'|'atlas'|'mimas'|'calypso'|'linux')
+            if [ "$SSH_TTY" -a $(hostname) != 'linux' ]; then
+                PROMPT_COLOR=magenta # Magenta for non-local terminal
             else
-                PROMPT_COLOR=green  # Green for local terminal
+                PROMPT_COLOR=blue    # Blue for local terminal
             fi
-        fi
-        ;;
-    *)
-        PROMPT_COLOR=red            # Red for unknown systems
-        ;;
-esac
+            ;;
+        *)
+            PROMPT_COLOR=green       # Green for unknown systems
+            ;;
+    esac
+fi
 
 case $(uname -s) in
     'Linux')
@@ -115,11 +115,9 @@ esac
 
 # Finding prompt sign
 if [ $(whoami) = "root" ]; then
-    PROMPT_SIGN='#'
     # Maybe in shared ~/
     HISTFILE=~/.histfile_nyerup
 else
-    PROMPT_SIGN='%%' # Yes. Two.
     # My own histfile
     HISTFILE=~/.histfile
 fi
@@ -144,9 +142,9 @@ alias xping='xping -C'
 
 # Warning if system wide SendEnv is active in /etc/ssh/ssh_config
 if [ -r /etc/ssh/ssh_config ]; then
-    WARNING=$(grep 'SendEnv LANG' /etc/ssh/ssh_config | perl -nle 'unless (/^#/) {print "!"}')
+    grep -q '^ *SendEnv LANG' /etc/ssh/ssh_config && print -Pn "\e[7;31m*** Warning: /etc/ssh/ssh_config will SendEnv LANG ***\e[0m\n\n"
 fi
 
 # Setting up the prompt
-export PROMPT="[%T]${WARNING} %{$fg_bold[${PROMPT_COLOR}]%}%M %{$reset_color%}${PROMPT_SIGN} "
+export PROMPT="%{$fg_bold[${PROMPT_COLOR}]%}%M %{$reset_color%}%# "
 export RPROMPT="%{$fg[white]%}%~%{$reset_color%}"
