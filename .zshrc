@@ -146,5 +146,10 @@ if [ -r /etc/ssh/ssh_config ]; then
 fi
 
 # Setting up the prompt
-export PROMPT="%{$fg_bold[${PROMPT_COLOR}]%}%M %{$reset_color%}%# "
+AFQDN=$(hostname -A 2>/dev/null |cut -d' ' -f1 |sed 's/.one.com$//')
+if [ -n "$AFQDN" ]; then
+	export PROMPT="%{$fg_bold[${PROMPT_COLOR}]%}${AFQDN} %{$reset_color%}%# "
+else
+	export PROMPT="%{$fg_bold[${PROMPT_COLOR}]%}%M %{$reset_color%}%# "
+fi
 export RPROMPT="%{$fg[white]%}%~%{$reset_color%}"
