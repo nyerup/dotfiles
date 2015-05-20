@@ -140,6 +140,24 @@ alias bmail='mutt -F ~/.muttrc.one.com'
 alias cdiff="sed -e '/^---/s/^\(.*\)/[1m\1[0m/' -e '/^+++/s/^\(.*\)/[1m\1[0m/' -e '/^@@/s/^\(.*\)/[1m\1[0m/' -e '/^-/s/^\(.*\)/[31m\1[0m/' -e '/^\+/s/^\(.*\)/[32m\1[0m/' | less -C -R $@"
 alias xping='xping -C'
 
+if [ -t 0 ]; then
+    if (ls /etc/libvirt/lxc/ |grep -q .xml && sudo -n true 2>/dev/null) then
+        echo -e "\nThe following Libvirt guests are configured here:"
+        for guest in /etc/libvirt/lxc/*.xml; do
+            guest=$(basename $guest .xml)
+            state="not running"
+            for pid in $(pidof init); do
+                . <(sudo cat /proc/${pid}/environ | tr '\0' '\n' |grep '^LIBVIRT_LXC_NAME=')
+                test "$LIBVIRT_LXC_NAME" = "$guest" && state=running
+                unset LIBVIRT_LXC_NAME
+            done
+            printf " - %-45s (%s)\n" "$guest" "$state"
+        done
+    else
+        echo -e "\nNo Libvirt guests are configured here."
+    fi
+fi
+
 # Warning if system wide SendEnv is active in /etc/ssh/ssh_config
 if [ -r /etc/ssh/ssh_config ]; then
     grep -q '^ *SendEnv LANG' /etc/ssh/ssh_config && print -Pn "\e[7;31m*** Warning: /etc/ssh/ssh_config will SendEnv LANG ***\e[0m\n\n"
