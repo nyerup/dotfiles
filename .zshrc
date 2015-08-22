@@ -52,7 +52,7 @@ esac
 ZLS_COLORS=$LS_COLORS
 HISTSIZE=1000
 SAVEHIST=1000
-PATH="${HOME}/bin:/opt/local/bin:/opt/local/sbin:/opt/java/bin:/usr/local/opt/ruby/bin:/usr/local/bin:"$PATH
+PATH="${HOME}/bin:/opt/local/bin:/opt/local/sbin:/opt/java/bin:/usr/local/opt/ruby/bin:/opt/chefdk/bin:/usr/local/bin:/usr/local/go/bin:"$PATH
 
 export GIT_AUTHOR_NAME="Jesper Dahl Nyerup"
 export GIT_AUTHOR_EMAIL=nyerup@one.com
@@ -82,7 +82,7 @@ if [ $(id -u) -eq 0 ]; then
     PROMPT_COLOR=red                 # Red for root terminal
 else
     case $(hostname) in
-        'enceladus'|'iapetus'|'atlas'|'mimas'|'calypso'|'linux')
+        'enceladus'|'iapetus'|'atlas'|'tethys'|'mimas'|'calypso'|'linux')
             if [ "$SSH_TTY" -a $(hostname) != 'linux' ]; then
                 PROMPT_COLOR=magenta # Magenta for non-local terminal
             else
@@ -166,7 +166,7 @@ if [ -r /etc/ssh/ssh_config ]; then
 fi
 
 # Setting up the prompt
-AFQDN=$(hostname -A 2>/dev/null |cut -d' ' -f1 |sed 's/.one.com$//')
+AFQDN=$(hostname -f 2>/dev/null |cut -d' ' -f1 |sed 's/.one.com$//')
 if [ -n "$AFQDN" ]; then
 	export PROMPT="%{$fg_bold[${PROMPT_COLOR}]%}${AFQDN} %{$reset_color%}%# "
 else
