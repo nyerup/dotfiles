@@ -63,7 +63,8 @@ export DEBEMAIL="${GIT_AUTHOR_EMAIL}"
 export DEBCHANGE_AUTO_NMU=no
 export REPLYTO=nyerup@one.com
 export ONECOMID=nyerup
-export EDITOR=vi
+export EDITOR=vim
+export GOPATH="$HOME/go"
 
 # Don't complete with git ls-files
 __git_files () {
