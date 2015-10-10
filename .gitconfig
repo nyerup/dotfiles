@@ -20,7 +20,7 @@
 [mergetool]
 	keepBackup = true
 [pull]
-	rebase = true
+	#rebase = true
 [push]
 	default = matching
 [sendemail]
