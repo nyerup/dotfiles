@@ -52,7 +52,7 @@ esac
 ZLS_COLORS=$LS_COLORS
 HISTSIZE=1000
 SAVEHIST=1000
-PATH="${HOME}/bin:/opt/local/bin:/opt/local/sbin:/opt/java/bin:/usr/local/opt/ruby/bin:/opt/chefdk/bin:/usr/local/bin:/usr/local/go/bin:"$PATH
+PATH="${HOME}/bin:/usr/local/opt/coreutils/libexec/gnubin:/opt/local/bin:/opt/local/sbin:/opt/java/bin:/usr/local/opt/ruby/bin:/opt/chefdk/bin:/usr/local/bin:/usr/local/go/bin:"$PATH
 
 export GIT_AUTHOR_NAME="Jesper Dahl Nyerup"
 export GIT_AUTHOR_EMAIL=nyerup@one.com
@@ -65,6 +65,7 @@ export REPLYTO=nyerup@one.com
 export ONECOMID=nyerup
 export EDITOR=vim
 export GOPATH="$HOME/go"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman/:/usr/share/man/"
 
 # Don't complete with git ls-files
 __git_files () {
@@ -97,7 +98,7 @@ else
 fi
 
 case $(uname -s) in
-    'Linux')
+    'Linux'|'Darwin')
         # Less Colors for Man Pages
         export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
         export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
