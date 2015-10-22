@@ -168,7 +168,7 @@ if [ -r /etc/ssh/ssh_config ]; then
 fi
 
 # Setting up the prompt
-AFQDN=$(hostname -f 2>/dev/null |cut -d' ' -f1 |sed 's/.one.com$//')
+AFQDN=$(hostname -f 2>/dev/null |cut -d' ' -f1 |sed -e 's/.one.com$//' -e 's/.local$//')
 if [ -n "$AFQDN" ]; then
 	export PROMPT="%{$fg_bold[${PROMPT_COLOR}]%}${AFQDN} %{$reset_color%}%# "
 else
