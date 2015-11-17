@@ -81,20 +81,16 @@ case $(hostname) in
 esac
 
 if [ $(id -u) -eq 0 ]; then
-    PROMPT_COLOR=red                 # Red for root terminal
+    # Root terminal
+    PROMPT_COLOR=red
 else
-    case $(hostname) in
-        'enceladus'|'iapetus'|'atlas'|'tethys'|'mimas'|'calypso'|'linux')
-            if [ "$SSH_TTY" -a $(hostname) != 'linux' ]; then
-                PROMPT_COLOR=magenta # Magenta for non-local terminal
-            else
-                PROMPT_COLOR=blue    # Blue for local terminal
-            fi
-            ;;
-        *)
-            PROMPT_COLOR=green       # Green for unknown systems
-            ;;
-    esac
+    if [ "$SSH_TTY" ]; then
+        # Non-local terminal
+        PROMPT_COLOR=yellow
+    else
+        # Local terminal
+        PROMPT_COLOR=green
+    fi
 fi
 
 case $(uname -s) in
