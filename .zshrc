@@ -138,6 +138,7 @@ alias bmail='mutt -F ~/.muttrc.one.com'
 alias cdiff="sed -e '/^---/s/^\(.*\)/[1m\1[0m/' -e '/^+++/s/^\(.*\)/[1m\1[0m/' -e '/^@@/s/^\(.*\)/[1m\1[0m/' -e '/^-/s/^\(.*\)/[31m\1[0m/' -e '/^\+/s/^\(.*\)/[32m\1[0m/' | less -C -R $@"
 alias xping='xping -C'
 alias dig='dig +noall +answer'
+alias vi=vim
 
 if [ -t 0 ]; then
     if [ -d "/etc/libvirt/lxc" ]; then
