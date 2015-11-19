@@ -142,16 +142,22 @@ alias vi=vim
 
 if [ -t 0 ]; then
     if [ -d "/etc/libvirt/lxc" ]; then
+        declare -A RUNNING_INITS
+        for pid in $(pidof init); do
+            . <(sudo cat /proc/${pid}/environ | tr '\0' '\n' |grep '^LIBVIRT_LXC_NAME=')
+            if [ -n "$LIBVIRT_LXC_NAME" ]; then
+                RUNNING_INITS[$LIBVIRT_LXC_NAME]='running'
+            fi
+            unset LIBVIRT_LXC_NAME
+        done
         if (ls /etc/libvirt/lxc/ |grep -q .xml && sudo -n true 2>/dev/null) then
             echo -e "\nThe following Libvirt guests are configured here:"
             for guest in /etc/libvirt/lxc/*.xml; do
                 guest=$(basename $guest .xml)
                 state="not running"
-                for pid in $(pidof init); do
-                    . <(sudo cat /proc/${pid}/environ | tr '\0' '\n' |grep '^LIBVIRT_LXC_NAME=')
-                    test "$LIBVIRT_LXC_NAME" = "$guest" && state=running
-                    unset LIBVIRT_LXC_NAME
-                done
+                if [ "${RUNNING_INITS[$guest]}" = 'running' ]; then
+                    state='running'
+                fi
                 printf " - %-45s (%s)\n" "$guest" "$state"
             done
         else
