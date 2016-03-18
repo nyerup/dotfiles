@@ -157,3 +157,5 @@ else
 	export PROMPT="%{$fg_bold[${PROMPT_COLOR}]%}%M %{$reset_color%}%# "
 fi
 export RPROMPT="%{$fg[white]%}%~%{$reset_color%}"
+
+# vim: set et ts=4 sw=4:
