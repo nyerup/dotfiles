@@ -1,5 +1,6 @@
 setopt appendhistory incappendhistory extendedhistory
 setopt autocd beep nomatch interactivecomments
+setopt null_glob
 unsetopt extendedglob notify
 
 zstyle ':completion:*' menu select
