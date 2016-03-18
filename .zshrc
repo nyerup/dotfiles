@@ -49,6 +49,10 @@ case $TERM in (xterm*|rxvt*)
 	;;
 esac
 
+if zsh -n /etc/profile 2>/dev/null; then
+    source /etc/profile
+fi
+
 ZLS_COLORS=$LS_COLORS
 HISTSIZE=1000
 SAVEHIST=1000
