@@ -86,8 +86,8 @@ autocmd BufWritePost *.tex call TypesetLatex()
 
 autocmd VimEnter * :call AfterOpen()
 
-map > :bnext<CR>
-map < :bprev<CR>
+map ] :bnext<CR>
+map [ :bprev<CR>
 
 if has("gui_running")
 	set lines=24 columns=80
