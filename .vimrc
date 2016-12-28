@@ -64,7 +64,7 @@ highlight SignColumn ctermbg=236
 match ExtraWhitespace /\s\+$/
 
 autocmd FileType text setlocal tw=80 noexpandtab
-autocmd FileType mkd setlocal tw=80
+autocmd FileType markdown setlocal tw=80
 autocmd FileType tex setlocal nofoldenable tw=80
 autocmd FileType python setlocal expandtab ts=4 sw=4
 autocmd FileType ruby setlocal expandtab ts=4 sw=4
