@@ -53,10 +53,13 @@ let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
 
+let g:gitgutter_override_sign_column_highlight = 0
+
 highlight SpecialKey ctermfg=19
 highlight CursorLine cterm=NONE ctermbg=17
 highlight StatusLine ctermfg=18 ctermbg=106
 highlight ExtraWhitespace ctermbg=red
+highlight SignColumn ctermbg=236
 
 match ExtraWhitespace /\s\+$/
 
