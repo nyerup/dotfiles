@@ -1,2 +1,2 @@
-hardstatus alwayslastline "%{Bb}%H: %?%{wb}%-w%{WB}%n %t%{wb}%+w"
+hardstatus alwayslastline "%{Bb}%H: %{wb}%-w%{WB}%n %t%{wb}%+w"
 startup_message off
