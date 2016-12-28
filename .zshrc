@@ -154,10 +154,10 @@ fi
 # Setting up the prompt
 AFQDN=$(hostname -f 2>/dev/null |cut -d' ' -f1 |sed -e 's/.one.com$//' -e 's/.local$//')
 if [ -n "$AFQDN" ]; then
-	export PROMPT="%{$fg_bold[${PROMPT_COLOR}]%}${AFQDN} %{$reset_color%}%# "
+	export PS1="%{$fg_bold[${PROMPT_COLOR}]%}${AFQDN} %{$reset_color%}%# "
 else
-	export PROMPT="%{$fg_bold[${PROMPT_COLOR}]%}%M %{$reset_color%}%# "
+	export PS1="%{$fg_bold[${PROMPT_COLOR}]%}%M %{$reset_color%}%# "
 fi
-export RPROMPT="%{$fg[white]%}%~%{$reset_color%}"
+export RPS1="%{$fg[white]%}%~%{$reset_color%}"
 
 # vim: set et ts=4 sw=4:
