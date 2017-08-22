@@ -20,6 +20,8 @@ set laststatus=2
 set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
 set statusline+=%#warningmsg#
 set statusline+=%*
+set splitbelow
+set splitright
 
 let g:vim_markdown_folding_disabled=1
 
@@ -64,6 +66,8 @@ highlight SignColumn ctermbg=236
 match ExtraWhitespace /\s\+$/
 
 autocmd FileType text setlocal tw=80 noexpandtab
+autocmd FileType mail setlocal tw=72 noexpandtab
+autocmd FileType mail highlight ExtraWhitespace none
 autocmd FileType markdown setlocal tw=80
 autocmd FileType tex setlocal nofoldenable tw=80
 autocmd FileType python setlocal expandtab ts=4 sw=4
@@ -84,10 +88,17 @@ autocmd BufNewFile,BufRead *.json.disabled set ft=json
 autocmd BufNewFile,BufRead *.jsondisabled set ft=json
 autocmd BufWritePost *.tex call TypesetLatex()
 
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 autocmd VimEnter * :call AfterOpen()
 
 map ] :bnext<CR>
 map [ :bprev<CR>
+map <C-n> :NERDTreeToggle<CR>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 if has("gui_running")
 	set lines=24 columns=80
