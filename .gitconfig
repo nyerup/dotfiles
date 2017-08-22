@@ -2,6 +2,7 @@
 	cdiff = diff --cached
 	pfa = !git spull && git fetch --all
 	remotes = remote -v
+	branches = branch -a
 	st = status
 	co = checkout
 	cp = cherry-pick
