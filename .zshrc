@@ -145,6 +145,10 @@ alias cdiff="sed -e '/^---/s/^\(.*\)/[1m\1[0m/' -e '/^+++/s/^\(.*\)/[1m\1[0m
 alias xping='xping -C'
 alias dig='dig +noall +answer'
 alias vi=vim
+alias start='sudo systemctl start'
+alias restart='sudo systemctl restart'
+alias stop='sudo systemctl stop'
+alias status='sudo systemctl status'
 
 # Warning if system wide SendEnv is active in /etc/ssh/ssh_config
 if [ -r /etc/ssh/ssh_config ]; then
