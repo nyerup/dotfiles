@@ -158,9 +158,9 @@ fi
 # Setting up the prompt
 AFQDN=$(hostname -f 2>/dev/null |cut -d' ' -f1 |sed -e 's/.one.com$//' -e 's/.local$//')
 if [ -n "$AFQDN" ]; then
-	export PS1="%{$fg[${PROMPT_COLOR}]%}${AFQDN} %{$reset_color%}%# "
+	export PS1="%{$fg_bold[${PROMPT_COLOR}]%}${AFQDN} %{$reset_color%}%# "
 else
-	export PS1="%{$fg[${PROMPT_COLOR}]%}%M %{$reset_color%}%# "
+	export PS1="%{$fg_bold[${PROMPT_COLOR}]%}%M %{$reset_color%}%# "
 fi
 export RPS1="%{$fg[white]%}%~%{$reset_color%}"
 
