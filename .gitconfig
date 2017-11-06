@@ -28,8 +28,8 @@
 	default = matching
 [sendemail]
 	chainreplyto = no
-	from = Jesper Dahl Nyerup <nyerup@one.com>
-	bcc = nyerup@one.com
+	from = Jesper Dahl Nyerup <jespern@unity3d.com>
+	bcc = jespern@unity3d.com
 [user]
 	name = Jesper Dahl Nyerup
-	email = nyerup@one.com
+	email = jespern@unity3d.com

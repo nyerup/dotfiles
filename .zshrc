@@ -60,7 +60,7 @@ SAVEHIST=1000
 PATH="${HOME}/bin:/usr/local/opt/coreutils/libexec/gnubin:/opt/local/bin:/opt/local/sbin:/opt/java/bin:/usr/local/opt/ruby/bin:/opt/chefdk/bin:/usr/local/bin:/usr/local/go/bin:"$PATH
 
 export GIT_AUTHOR_NAME="Jesper Dahl Nyerup"
-export GIT_AUTHOR_EMAIL=nyerup@one.com
+export GIT_AUTHOR_EMAIL=jespern@unity3d.com
 export GIT_COMMITTER_NAME="${GIT_AUTHOR_NAME}"
 export GIT_COMMITTER_EMAIL="${GIT_AUTHOR_EMAIL}"
 export DEBFULLNAME="${GIT_AUTHOR_NAME}"
