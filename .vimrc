@@ -1,3 +1,5 @@
+set shell=/bin/bash
+
 silent! call pathogen#infect()
 
 syntax on
