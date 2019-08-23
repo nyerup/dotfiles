@@ -66,7 +66,7 @@ export REPLYTO=nyerup@one.com
 export ONECOMID=nyerup
 export EDITOR=vim
 export GOPATH="$HOME/go"
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman/:/usr/share/man/"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman/:/usr/local/share/man/:/usr/share/man/"
 export SHELL=$(which zsh)
 
 # Don't complete with git ls-files
