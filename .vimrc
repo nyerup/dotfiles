@@ -73,10 +73,13 @@ autocmd FileType mail highlight ExtraWhitespace none
 autocmd FileType markdown setlocal tw=80
 autocmd FileType tex setlocal nofoldenable tw=80
 autocmd FileType python setlocal expandtab ts=4 sw=4
-autocmd FileType ruby setlocal expandtab ts=4 sw=4
+autocmd FileType ruby setlocal expandtab ts=2 sw=2
 autocmd FileType javascript setlocal expandtab ts=4 sw=4
 autocmd FileType json setlocal expandtab ts=4 sw=4
 autocmd FileType yaml setlocal expandtab ts=2 sw=2
+autocmd FileType ps1 setlocal expandtab ts=4 sw=4
+autocmd FileType cs setlocal expandtab ts=4 sw=4
+autocmd FileType html setlocal noexpandtab ts=2 sw=2
 
 autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
 
@@ -88,6 +91,7 @@ autocmd BufWinLeave * call clearmatches()
 autocmd BufNewFile,BufRead /tmp/mutt* set tw=72
 autocmd BufNewFile,BufRead *.json.disabled set ft=json
 autocmd BufNewFile,BufRead *.jsondisabled set ft=json
+autocmd BufNewFile,BufRead *.ts set ft=typescript
 autocmd BufWritePost *.tex call TypesetLatex()
 
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
