@@ -163,3 +163,9 @@ export RPS1="%{$fg[white]%}%~%{$reset_color%}"
 eval "$(rbenv init -)"
 
 # vim: set et ts=4 sw=4:
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/nyerup/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/nyerup/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/nyerup/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/nyerup/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
