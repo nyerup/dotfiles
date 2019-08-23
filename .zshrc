@@ -160,4 +160,6 @@ else
 fi
 export RPS1="%{$fg[white]%}%~%{$reset_color%}"
 
+eval "$(rbenv init -)"
+
 # vim: set et ts=4 sw=4:
