@@ -46,7 +46,7 @@ case $TERM in (xterm*|rxvt*)
         print -Pn "\e]0;$@\a"
     }
     autotitle
-	;;
+    ;;
 esac
 
 WORDCHARS=${WORDCHARS//[\/.;]}
