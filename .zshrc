@@ -14,7 +14,6 @@ zle -N edit-command-line
 bindkey '\ee' edit-command-line
 
 stty werase undef
-WORDCHARS=${WORDCHARS//[\/.;]}
 
 # Keyboard bindings
 bindkey -e
@@ -50,11 +49,29 @@ case $TERM in (xterm*|rxvt*)
 	;;
 esac
 
+WORDCHARS=${WORDCHARS//[\/.;]}
 ZLS_COLORS=$LS_COLORS
 HISTSIZE=1000
 SAVEHIST=1000
-PATH="${HOME}/bin:/usr/local/opt/coreutils/libexec/gnubin:/opt/local/bin:/opt/local/sbin:/opt/java/bin:/usr/local/opt/ruby/bin:/opt/chefdk/bin:/usr/local/bin:/usr/local/go/bin:"$PATH
+HISTFILE=~/.histfile
 
+PATH="${PATH}:${HOME}/bin"
+PATH="${PATH}:/usr/local/opt/coreutils/libexec/gnubin"
+PATH="${PATH}:/opt/local/bin"
+PATH="${PATH}:/opt/local/sbin"
+PATH="${PATH}:/opt/java/bin"
+PATH="${PATH}:/usr/local/opt/ruby/bin"
+PATH="${PATH}:/opt/chefdk/bin"
+PATH="${PATH}:/usr/local/bin"
+PATH="${PATH}:/usr/local/go/bin"
+
+MANPATH="${MANPATH}:/usr/share/man/"
+MANPATH="${MANPATH}:/usr/local/share/man/"
+MANPATH="${MANPATH}:/usr/local/opt/coreutils/libexec/gnuman/"
+
+export PATH
+export MANPATH
+export LC_ALL=en_US
 export GIT_AUTHOR_NAME="Jesper Dahl Nyerup"
 export GIT_AUTHOR_EMAIL=jespern@unity3d.com
 export GIT_COMMITTER_NAME="${GIT_AUTHOR_NAME}"
@@ -62,25 +79,24 @@ export GIT_COMMITTER_EMAIL="${GIT_AUTHOR_EMAIL}"
 export DEBFULLNAME="${GIT_AUTHOR_NAME}"
 export DEBEMAIL="${GIT_AUTHOR_EMAIL}"
 export DEBCHANGE_AUTO_NMU=no
-export REPLYTO=nyerup@one.com
-export ONECOMID=nyerup
 export EDITOR=vim
 export GOPATH="$HOME/go"
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman/:/usr/local/share/man/:/usr/share/man/"
 export SHELL=$(which zsh)
+
+# Less Colors for Man Pages
+export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
+export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
+export LESS_TERMCAP_me=$'\E[0m'           # end mode
+export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
+export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
+export LESS_TERMCAP_ue=$'\E[0m'           # end underline
+export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 # Don't complete with git ls-files
 __git_files () {
   _files
   return 0
 }
-
-case $(hostname) in
-    'enceladus'|'iapetus')
-        ${HOME}/bin/enable_ssh-agent
-        source .ssh-agent.rc > /dev/null
-        ;;
-esac
 
 if [ $(id -u) -eq 0 ]; then
     # Root terminal
@@ -96,16 +112,7 @@ else
 fi
 
 case $(uname -s) in
-    'Linux'|'Darwin')
-        # Less Colors for Man Pages
-        export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
-        export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
-        export LESS_TERMCAP_me=$'\E[0m'           # end mode
-        export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
-        export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
-        export LESS_TERMCAP_ue=$'\E[0m'           # end underline
-        export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
-
+    'Linux')
         alias ls='ls -F --color=auto'
         ;;
     'Darwin')
@@ -113,21 +120,8 @@ case $(uname -s) in
         ;;
 esac
 
-# Finding prompt sign
-if [ $(whoami) = "root" ]; then
-    # Maybe in shared ~/
-    HISTFILE=~/.histfile_nyerup
-else
-    # My own histfile
-    HISTFILE=~/.histfile
-fi
-
-if [ $(hostname) = 'linux' ]; then
-	HISTFILE=~/.histfile.linux
-fi
-
 # Setting up aliases
-alias ll='ls -l'
+alias ll='ls -lAh'
 alias la='ls -la'
 alias count='sort| uniq -c| sort -n'
 alias forever='while true'
@@ -135,8 +129,6 @@ alias indent="perl -nle 'print \"    \".\$_'"
 alias dch='dch --no-auto-nmu'
 alias ssg='ssh'
 alias ssj='ssh'
-alias gmail='mutt -F ~/.muttrc.gmail'
-alias bmail='mutt -F ~/.muttrc.one.com'
 alias cdiff="sed -e '/^---/s/^\(.*\)/[1m\1[0m/' -e '/^+++/s/^\(.*\)/[1m\1[0m/' -e '/^@@/s/^\(.*\)/[1m\1[0m/' -e '/^-/s/^\(.*\)/[31m\1[0m/' -e '/^\+/s/^\(.*\)/[32m\1[0m/' | less -C -R $@"
 alias xping='xping -C'
 alias dig='dig +noall +answer'
@@ -152,7 +144,7 @@ if [ -r /etc/ssh/ssh_config ]; then
 fi
 
 # Setting up the prompt
-AFQDN=$(hostname -f 2>/dev/null |cut -d' ' -f1 |sed -e 's/.one.com$//' -e 's/.local$//')
+AFQDN=$(hostname -f 2>/dev/null |cut -d' ' -f1 |sed -e 's/.local$//')
 if [ -n "$AFQDN" ]; then
 	export PS1="%{$fg_bold[${PROMPT_COLOR}]%}${AFQDN} %{$reset_color%}%# "
 else
@@ -160,12 +152,11 @@ else
 fi
 export RPS1="%{$fg[white]%}%~%{$reset_color%}"
 
+# rbenv
 eval "$(rbenv init -)"
 
+for file in .zsh/*.zsh.inc; do
+    source "$file"
+done
+
 # vim: set et ts=4 sw=4:
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/nyerup/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/nyerup/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/nyerup/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/nyerup/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
