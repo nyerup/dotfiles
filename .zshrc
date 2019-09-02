@@ -150,7 +150,14 @@ if [ -n "$AFQDN" ]; then
 else
 	export PS1="%{$fg_bold[${PROMPT_COLOR}]%}%M %{$reset_color%}%# "
 fi
-export RPS1="%{$fg[white]%}%~%{$reset_color%}"
+
+rprompt () {
+    export RPS1="%{$fg[white]%}%~%{$reset_color%}"
+}
+norprompt () {
+    unset RPS1
+}
+rprompt
 
 # rbenv
 eval "$(rbenv init -)"
