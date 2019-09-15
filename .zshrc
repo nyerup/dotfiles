@@ -160,7 +160,9 @@ norprompt () {
 rprompt
 
 # rbenv
-eval "$(rbenv init -)"
+if (type rbenv >/dev/null); then
+    eval "$(rbenv init -)"
+fi
 
 for file in .zsh/*.zsh.inc; do
     source "$file"
